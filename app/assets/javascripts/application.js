@@ -15,3 +15,14 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+function update_versions_div(project_id) {  
+  jQuery.ajax({
+    url: "/user/registrations/new",
+    type: "GET",
+    data: {"project_id" : project_id},
+    dataType: "html"
+    success: function(data) {
+      jQuery("#versionsDiv").html(data);
+    }
+  });
+}

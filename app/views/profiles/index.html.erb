@@ -1,4 +1,18 @@
+<%=render 'nav'%>
+
 <h1>Groupon SA Roster</h1>
+<!-- <div class = "field"> -->
+<p>Job Title </p><select name="job_title", id="post[job_title]"><br />
+
+
+<%= options_for_select([['CS','CS'],['Sales','Sales'],['HR Manager','HR Manager']], :onchange => "fillAnswerNumber();") %>
+<%=javascript_include_tag 'jquery', 'application'%>
+
+      </div>
+<%="#{@users.uniq.pluck(:job_title).join(', ')}"%>
+<!-- <div class = "field"> -->
+<p>Name </p>
+<select name="name", id="post[name]"><br />
 
 
 <% @users.each do |user| %>
