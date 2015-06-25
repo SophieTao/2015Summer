@@ -1,20 +1,37 @@
 <%=render 'nav'%>
 
 <h1>Groupon SA Roster</h1>
+
 <!-- <div class = "field"> -->
-<p>Job Title </p><select name="job_title", id="post[job_title]"><br />
 
 
-<%= options_for_select([['CS','CS'],['Sales','Sales'],['HR Manager','HR Manager']], :onchange => "fillAnswerNumber();") %>
-<%=javascript_include_tag 'jquery', 'application'%>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.chained.min.js"></script><select id="department" name="department">
+  <option value="">Select a Department</option><%@departments.each do |department|%>
+  <option value="#{department.name}">
+  <%= department.name%>
+  <%end%></option>
+ 
+</select>
 
-      </div>
-<%="#{@users.uniq.pluck(:job_title).join(', ')}"%>
-<!-- <div class = "field"> -->
-<p>Name </p>
-<select name="name", id="post[name]"><br />
+<select id="users" name="users">
+  <option value="">--</option>
+
+  <%i = 0%>
+
+ 
+  <option value="CS-2" class="cs">Ann</option>
+  <option value="finance-1" class="finance">Amy</option>
+  <option value="finance-2" class="finance">Chris</option>
+</select>
 
 
+
+ <script src="http://www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
+  $(function(){
+      $("#users").chained("#department");
+  });
+  </script> <pre class=prettyprint>
 <% @users.each do |user| %>
 	<% name = user.first_name + " " + user.last_name %>
 	<%= link_to name, profile_path(user) %> - <%= user.job_title %>

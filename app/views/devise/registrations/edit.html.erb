@@ -14,12 +14,14 @@
     <%= f.text_field :last_name %>
   </div>
 
- 
+ <% departments_array = Department.all.map { |department| [department.name, department.id] } %>
  <div class="field">
- <%= f.label :job_title%><br />
-      <%=f.select(:job_title, options_for_select([['Business Intelligence','Business Intelligence'],['Cape Town Sales Manager','Cape Town Sales Manager'],['Cape Town Sales','Cape Town Sales'], ['CEO','CEO'], ['City Planner Manager','City Planner Manager'], ['City Planner','City Planner'], ['CS','CS'], ['CS Manager','CS Manager'], ['Durban Sales', 'Durban Sales'], ['Durban City Manager', 'Durban City Manager'], ['Editorial', 'Editorial'], ['Editorial Manager', 'Editorial Manager'], ['Finance', 'Finance'], ['Goods Administrator', 'Goods Administrator'], ['Goods Manager', 'Goods Manager'], ['Goods Sales', 'Goods Sales'], ['Goods Manager', 'Goods Manager'], ['HR Manager', 'HR Manager'], ['Johannesburg Sales','Johannesburg Sales'], ['Logistics','Logistics'], ['Logistics Manager','Logistics Manager'], ['Pretoria Sales','Pretoria Sales'], ['Pretoria Sales Manager', 'Pretoria Sales Manager'], ['Product Designer', 'Product Designer'], ['PRM', 'PRM'], ['PRM Manager', 'PRM Manager'], ['QA', 'QA'], ['Risk Manager', 'Risk Manager'], ['Strategic Accounts', 'Strategic Accounts'], ['Telesales', 'Telesales'], ['Telesales Manager', 'Telesales Manager'], ['Travel', 'Travel']]), :include_blank => 'Please Select') %></div>
-
-
+ <%= f.label :department%><br />
+      <%=f.select(:department, options_for_select(departments_array), :include_blank => 'Please Select') %></div>
+ <% jobs_array = ['Sales', 'Sales Intern', 'Sales Manager'] %>
+<div class="field">
+ <%= f.label :title%><br />
+      <%=f.select(:job_title, options_for_select(jobs_array), :include_blank => 'Please Select') %></div>
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

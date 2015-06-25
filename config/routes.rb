@@ -1,12 +1,26 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+  # You can have the root of your site routed with "root"
+  get '/', to: redirect('/profiles/index')
+
+  # Example of regular route:
+  #   get 'products/:id' => 'catalog#view'
+  get 'profiles/show'
+get 'profiles/index'
+ get 'welcome/index'
 
   get 'welcome/sent'
-
+resources :profiles
   devise_for :users, :controllers => { registrations: 'user/registrations' }
-
-  resources :profiles
+resources :profiles
+    get 'profiles/update_users', as: 'update_users'
+resources :departments do
+  resources :users
+end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

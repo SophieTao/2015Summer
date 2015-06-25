@@ -9,6 +9,15 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
+  <p>
+  <label for="profile_department_id">Department:</label>
+  <%= f.collection_select :department_id, Department.find(:all), :id, :name, :prompt => "Select a Department" %>
+</p>
+<p id="user_field">
+  <label for="profile_user_id">User:</label>
+  <%= f.collection_select :user_id, User.find(:all), :id, :email, :prompt => "Select a User" %>
+</p>
+
   <div class="actions">
     <%= f.submit "Send me reset password instructions" %>
   </div>
